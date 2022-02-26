@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../widgets/BottomNavBarWidget.dart';
+import './signInPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,8 +30,10 @@ class _HomePageState extends State<HomePage> {
               Icons.notifications_none,
               color: Color(0xff000000),
             ),
-            onPressed: () {},
-          )
+            onPressed: () {
+              (context) => SignInPage();
+            },
+          ),
         ],
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
