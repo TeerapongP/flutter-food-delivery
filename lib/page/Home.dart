@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import '../widgets/BottomNavBarWidget.dart';
 import './signInPage.dart';
 
@@ -35,7 +35,6 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ],
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SingleChildScrollView(
         child: Column(
