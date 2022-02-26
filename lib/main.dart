@@ -5,7 +5,7 @@ void main() => runApp(
       MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: 'Roboto',
+          fontFamily: 'Roboto-Regular.ttf',
         ),
         // ignore: prefer_const_constructors
         home: HomePage(),

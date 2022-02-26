@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../animetions/ScaleRoute.dart';
 import '../widgets/BottomNavBarWidget.dart';
 import './signInPage.dart';
 
@@ -26,14 +26,13 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
-              Icons.notifications_none,
-              color: Color(0xff000000),
-            ),
-            onPressed: () {
-              (context) => SignInPage();
-            },
-          ),
+              icon: const Icon(
+                Icons.notifications_none,
+                color: Color(0xff000000),
+              ),
+              onPressed: () {
+                Navigator.push(context, ScaleRoute(page: SignInPage()));
+              }),
         ],
       ),
       body: SingleChildScrollView(
@@ -41,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[],
         ),
       ),
-      bottomNavigationBar: BottomNavBarWidget(),
+      bottomNavigationBar: const BottomNavBarWidget(),
     );
   }
 }
