@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widgets/BottomNavBarWidget.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -20,16 +23,16 @@ class _HomePageState extends State<HomePage> {
               fontSize: 16,
               fontWeight: FontWeight.w400),
         ),
-        brightness: Brightness.light,
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications_none,
               color: Color(0xff000000),
             ),
             onPressed: () {},
           )
         ],
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SingleChildScrollView(
         child: Column(

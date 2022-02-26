@@ -7,6 +7,7 @@ void main() => runApp(
         theme: ThemeData(
           fontFamily: 'Roboto',
         ),
+        // ignore: prefer_const_constructors
         home: HomePage(),
       ),
     );
