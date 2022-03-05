@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:delivery/page/signUpPage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../animetions/ScaleRoute.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class _SignInPageState extends State<SignInPage> {
 
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(left: 10, right: 5),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         width: double.infinity,
         height: double.infinity,
         color: Colors.white,
@@ -145,13 +147,20 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                           InkWell(
-                            onTap: () => {},
+                            onTap: () => {
+                              Navigator.push(
+                                context,
+                                ScaleRoute(
+                                  page: SignUpPage(),
+                                ),
+                              )
+                            },
                             child: Text(
                               "Sign Up",
                               style: TextStyle(
-                                color: Color(0xff4699C3),
+                                color: Color(0xFF4699C3),
                                 fontFamily: defaultFontFamily,
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontStyle: FontStyle.normal,
                               ),
                             ),

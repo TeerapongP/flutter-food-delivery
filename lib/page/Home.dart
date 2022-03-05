@@ -31,13 +31,18 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xff000000),
               ),
               onPressed: () {
-                Navigator.push(context, ScaleRoute(page: SignInPage()));
+                Navigator.push(
+                  context,
+                  ScaleRoute(
+                    page: const SignInPage(),
+                  ),
+                );
               }),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[],
+          children: const <Widget>[],
         ),
       ),
       bottomNavigationBar: const BottomNavBarWidget(),
