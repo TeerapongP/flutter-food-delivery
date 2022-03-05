@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../animetions/ScaleRoute.dart';
 import '../widgets/BottomNavBarWidget.dart';
 import './signInPage.dart';
+import '../widgets/SearchWidget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -42,7 +43,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: const <Widget>[],
+          children: const <Widget>[
+            SearchWidget(),
+          ],
         ),
       ),
       bottomNavigationBar: const BottomNavBarWidget(),
