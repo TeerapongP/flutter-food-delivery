@@ -31,14 +31,7 @@ class _HomePageState extends State<HomePage> {
                 Icons.notifications_none,
                 color: Color(0xff000000),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  ScaleRoute(
-                    page: const SignInPage(),
-                  ),
-                );
-              }),
+              onPressed: () {}),
         ],
       ),
       body: SingleChildScrollView(
