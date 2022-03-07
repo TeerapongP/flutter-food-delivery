@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import '../animetions/ScaleRoute.dart';
 import '../widgets/BottomNavBarWidget.dart';
