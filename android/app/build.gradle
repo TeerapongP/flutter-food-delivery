@@ -50,7 +50,13 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-
+    signingConfigs{
+        debug{
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('mykey.jks')
+        }
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
@@ -66,5 +72,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    
 }
 apply plugin: 'com.google.gms.google-services'

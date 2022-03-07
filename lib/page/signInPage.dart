@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_constructors
+import 'dart:js';
+
 import 'package:delivery/page/signUpPage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../animetions/ScaleRoute.dart';
 import './Home.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 // ignore: camel_case_types
@@ -74,6 +78,7 @@ class _SignInPage extends State<SignInPage> {
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Roboto-Regular.ttf';
     double defaultIconSize = 24;
+
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
 
@@ -224,7 +229,7 @@ class _SignInPage extends State<SignInPage> {
                   SizedBox(
                     height: 2,
                   ),
-                  FacebookGoogleLogin(),
+                  GoogleSignInApp_FaceBookSignInApp(),
                   SizedBox(
                     height: 35,
                   ),
@@ -279,11 +284,20 @@ class _SignInPage extends State<SignInPage> {
   }
 }
 
-class FacebookGoogleLogin extends StatelessWidget {
-  const FacebookGoogleLogin({Key? key}) : super(key: key);
+// ignore: camel_case_types
+class GoogleSignInApp_FaceBookSignInApp extends StatefulWidget {
+  const GoogleSignInApp_FaceBookSignInApp({Key? key}) : super(key: key);
+  @override
+  _SignInPage_Firebase createState() => _SignInPage_Firebase();
+}
 
+// ignore: unused_element
+class _GoogleSignInAppState extends State<GoogleSignInApp_FaceBookSignInApp> {
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  // GoogleSignInAccount? user = _googleSignIn.currenUser;
   @override
   Widget build(BuildContext context) {
+    GoogleSignInAccount? user = _googleSignIn.currentUser;
     return Column(
       children: <Widget>[
         Padding(
@@ -359,7 +373,12 @@ class FacebookGoogleLogin extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 10.0),
               child: GestureDetector(
-                onTap: () => {},
+                onTap: user != null
+                    ? null
+                    : () async {
+                        await _googleSignIn.signIn();
+                        setState(() {});
+                      },
                 child: Container(
                   padding: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
