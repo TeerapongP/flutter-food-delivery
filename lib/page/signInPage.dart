@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-import 'dart:js';
-
 import 'package:delivery/page/signUpPage.dart';
 
 import 'package:flutter/material.dart';
@@ -229,7 +227,7 @@ class _SignInPage extends State<SignInPage> {
                   SizedBox(
                     height: 2,
                   ),
-                  GoogleSignInApp(),
+                  FacebookGoogleLogin(),
                   SizedBox(
                     height: 35,
                   ),
@@ -284,20 +282,18 @@ class _SignInPage extends State<SignInPage> {
   }
 }
 
-// ignore: camel_case_types
-class GoogleSignInApp extends StatefulWidget {
-  const GoogleSignInApp({Key? key}) : super(key: key);
+class FacebookGoogleLogin extends StatefulWidget {
+  const FacebookGoogleLogin({Key? key}) : super(key: key);
   @override
-  _SignInPage_Firebase createState() => _SignInPage_Firebase();
+  _FacebookGoogleLogin createState() => _FacebookGoogleLogin();
 }
 
-// ignore: unused_element
-class _GoogleSignInAppState extends State<GoogleSignInApp> {
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-  // GoogleSignInAccount? user = _googleSignIn.currenUser;
+// ignore: camel_case_types
+class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
+  final googel = GoogleSignIn();
+  GoogleSignInAccount? user;
   @override
   Widget build(BuildContext context) {
-    GoogleSignInAccount? user = _googleSignIn.currentUser;
     return Column(
       children: <Widget>[
         Padding(
@@ -373,25 +369,41 @@ class _GoogleSignInAppState extends State<GoogleSignInApp> {
             Padding(
               padding: EdgeInsets.only(top: 10.0),
               child: GestureDetector(
-                onTap: user != null
-                    ? null
-                    : () async {
-                        await _googleSignIn.signIn();
-                        setState(() {});
-                      },
-                child: Container(
-                  padding: const EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFF55C5D1),
-                  ),
-                  // ignore: unnecessary_new
-                  child: new Icon(
-                    FontAwesomeIcons.google,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ),
-              ),
+                  onTap: () async {
+                    try {
+                      final googleMethod = await googel.signIn();
+                      user = googleMethod;
+                      final auth = await googleMethod?.authentication;
+                      final cred = GoogleAuthProvider.credential(
+                          accessToken: auth!.idToken, idToken: auth.idToken);
+                      await FirebaseAuth.instance
+                          .signInWithCredential(cred)
+                          .whenComplete(() {
+                        print(user!.email.toString());
+                        print(user!.displayName.toString());
+                        print(user!.photoUrl.toString());
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      });
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF55C5D1),
+                    ),
+                    // ignore: unnecessary_new
+                    child: new Icon(
+                      FontAwesomeIcons.google,
+                      color: Color(0xFFFFFFFF),
+                    ),
+                  )),
             ),
           ],
         ),
