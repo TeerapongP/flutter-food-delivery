@@ -229,7 +229,7 @@ class _SignInPage extends State<SignInPage> {
                   SizedBox(
                     height: 2,
                   ),
-                  GoogleSignInApp_FaceBookSignInApp(),
+                  GoogleSignInApp(),
                   SizedBox(
                     height: 35,
                   ),
@@ -285,14 +285,14 @@ class _SignInPage extends State<SignInPage> {
 }
 
 // ignore: camel_case_types
-class GoogleSignInApp_FaceBookSignInApp extends StatefulWidget {
-  const GoogleSignInApp_FaceBookSignInApp({Key? key}) : super(key: key);
+class GoogleSignInApp extends StatefulWidget {
+  const GoogleSignInApp({Key? key}) : super(key: key);
   @override
   _SignInPage_Firebase createState() => _SignInPage_Firebase();
 }
 
 // ignore: unused_element
-class _GoogleSignInAppState extends State<GoogleSignInApp_FaceBookSignInApp> {
+class _GoogleSignInAppState extends State<GoogleSignInApp> {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   // GoogleSignInAccount? user = _googleSignIn.currenUser;
   @override
