@@ -16,6 +16,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     void _onItemTapped(int index) {
       setState(() {
         _selectedIndex = index;
+
 //        navigateToScreens(index);
       });
     }

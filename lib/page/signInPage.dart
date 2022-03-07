@@ -1,22 +1,81 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:delivery/page/signUpPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../animetions/ScaleRoute.dart';
+import './Home.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+// ignore: camel_case_types
+class SignInPage_Firebase extends StatefulWidget {
+  const SignInPage_Firebase({Key? key}) : super(key: key);
+  @override
+  _SignInPage_Firebase createState() => _SignInPage_Firebase();
+}
+
+// ignore: camel_case_types
+class _SignInPage_Firebase extends State<SignInPage_Firebase> {
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    return firebaseApp;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: FutureBuilder(
+      future: _initializeFirebase(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return SignInPage();
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    ));
+  }
+}
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  _SignInPage createState() => _SignInPage();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignInPage extends State<SignInPage> {
+  //email = example@gmail.com
+  //password = 12345678
+
+  //Login Fuctions
+  static Future<User?> loginUsingEmailPassword(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        print("No User found for that email");
+      }
+    }
+    return user;
+  }
+
   @override
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Roboto-Regular.ttf';
     double defaultIconSize = 24;
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
 
     return Scaffold(
       body: Container(
@@ -43,6 +102,7 @@ class _SignInPageState extends State<SignInPage> {
                     height: 15,
                   ),
                   TextField(
+                    controller: _emailController,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(
@@ -72,6 +132,7 @@ class _SignInPageState extends State<SignInPage> {
                     height: 16,
                   ),
                   TextField(
+                    controller: _passwordController,
                     obscureText: true,
                     showCursor: true,
                     decoration: InputDecoration(
@@ -120,7 +181,46 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     height: 12,
                   ),
-                  SignInButtonWidget(),
+                  Container(
+                    width: double.infinity,
+                    // ignore: unnecessary_new
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      boxShadow: const <BoxShadow>[
+                        BoxShadow(
+                          color: Color(0xFF4699C3),
+                        ),
+                      ],
+                    ),
+                    child: MaterialButton(
+                        highlightColor: Colors.transparent,
+                        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 42.0),
+                          child: Text(
+                            "LOGIN",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                                fontFamily: "Roboto-Regular"),
+                          ),
+                        ),
+                        onPressed: () async {
+                          User? user = await loginUsingEmailPassword(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                              context: context);
+                          print(user);
+                          if (user != null) {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              ),
+                            );
+                          }
+                        }),
+                  ),
                   SizedBox(
                     height: 2,
                   ),
@@ -179,41 +279,6 @@ class _SignInPageState extends State<SignInPage> {
   }
 }
 
-class SignInButtonWidget extends StatelessWidget {
-  const SignInButtonWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      // ignore: unnecessary_new
-      decoration: new BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        boxShadow: const <BoxShadow>[
-          BoxShadow(
-            color: Color(0xFF4699C3),
-          ),
-        ],
-      ),
-      child: MaterialButton(
-          highlightColor: Colors.transparent,
-          //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 42.0),
-            child: Text(
-              "LOGIN",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontFamily: "Roboto-Regular"),
-            ),
-          ),
-          onPressed: () => {}),
-    );
-  }
-}
-
 class FacebookGoogleLogin extends StatelessWidget {
   const FacebookGoogleLogin({Key? key}) : super(key: key);
 
@@ -249,7 +314,7 @@ class FacebookGoogleLogin extends StatelessWidget {
                   style: TextStyle(
                       color: Color(0xFF2c2b2b),
                       fontSize: 16.0,
-                      fontFamily: "WorkSansMedium"),
+                      fontFamily: "Roboto-Regular.ttf"),
                 ),
               ),
               Container(
