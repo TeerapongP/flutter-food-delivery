@@ -1,8 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-<<<<<<< HEAD
 
-=======
->>>>>>> dev
 import 'package:delivery/page/signUpPage.dart';
 
 import 'package:flutter/material.dart';
