@@ -1,9 +1,10 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import '../animetions/ScaleRoute.dart';
 import '../widgets/BottomNavBarWidget.dart';
-import './signInPage.dart';
 import '../widgets/SearchWidget.dart';
+import '../widgets/TopMenus.dart';
+import '../widgets/PopularFoodsWidget.dart';
+import '../widgets/BestFoodWidget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,6 +39,9 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: const <Widget>[
             SearchWidget(),
+            TopMenus(),
+            PopularFoodsWidget(),
+            BestFoodWidget(),
           ],
         ),
       ),
