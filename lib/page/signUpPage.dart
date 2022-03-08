@@ -1,13 +1,28 @@
 // ignore: file_names
-import 'package:delivery/page/signInPage.dart';
+import './Home.dart';
+
 import 'package:flutter/material.dart';
-import '../animetions/ScaleRoute.dart';
-import './signInPage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import '../animetions/ScaleRoute.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
+// ignore: camel_case_types
+class SignUpPage_Firebase extends StatefulWidget {
+  const SignUpPage_Firebase({Key? key}) : super(key: key);
+  @override
+  _SignUpPage_Firebase createState() => _SignUpPage_Firebase();
+}
+
+// ignore: camel_case_types
+class _SignUpPage_Firebase extends State<SignUpPage_Firebase> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  String defaultFontFamily = 'Roboto-Regular.ttf';
+  double defaultIconSize = 24;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,70 +50,14 @@ class SignUpPage extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  Row(
-                    children: const <Widget>[
-                      Flexible(
-                        flex: 1,
-                        child: TextField(
-                          showCursor: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide: BorderSide(
-                                width: 0,
-                                style: BorderStyle.none,
-                              ),
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFF2F3F5),
-                            hintStyle: TextStyle(
-                              color: Color(0xFF666666),
-                              fontFamily: 'Roboto-Regular.ttf',
-                              fontSize: 16,
-                            ),
-                            hintText: "First Name",
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: TextField(
-                          showCursor: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                              borderSide: BorderSide(
-                                width: 0,
-                                style: BorderStyle.none,
-                              ),
-                            ),
-                            filled: true,
-                            fillColor: Color(
-                              0xFFF2F3F5,
-                            ),
-                            hintStyle: TextStyle(
-                              color: Color(0xFF666666),
-                              fontFamily: 'Roboto-Regular.ttf',
-                              fontSize: 16,
-                            ),
-                            hintText: 'Last Name',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+
                   const SizedBox(
                     height: 15,
                   ),
-                  const TextField(
+                  TextField(
+                    controller: _emailController,
                     showCursor: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10.0),
@@ -110,7 +69,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       filled: true,
                       prefixIcon: Icon(
-                        Icons.phone,
+                        Icons.mail,
                         color: Color(0xFF666666),
                         size: 24,
                       ),
@@ -122,43 +81,38 @@ class SignUpPage extends StatelessWidget {
                         fontFamily: 'Roboto-Regular.ttf',
                         fontSize: 16,
                       ),
-                      hintText: 'Phone Numbber',
+                      hintText: 'Email.',
                     ),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
-                  const TextField(
+                  TextField(
+                    controller: _passwordController,
+                    obscureText: true,
                     showCursor: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         borderSide: BorderSide(
                           width: 0,
                           style: BorderStyle.none,
                         ),
                       ),
                       filled: true,
+                      contentPadding: const EdgeInsets.all(16),
                       prefixIcon: Icon(
-                        Icons.code,
-                        color: Color(
-                          0xFF666666,
-                        ),
-                        size: 24,
+                        Icons.password,
+                        color: const Color(0xFF666666),
+                        size: defaultIconSize,
                       ),
-                      fillColor: Color(
-                        0xFFF2F3F5,
-                      ),
+                      fillColor: const Color(0xFFF2F3F5),
                       hintStyle: TextStyle(
-                        color: Color(
-                          0xFF666666,
-                        ),
-                        fontFamily: 'Roboto-Regular.ttf',
-                        fontSize: 16,
-                      ),
-                      hintText: 'Invitation Code',
+                          color: const Color(0xFF666666),
+                          fontFamily: defaultFontFamily,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400),
+                      hintText: "Password",
                     ),
                   ),
                   const SizedBox(
@@ -167,7 +121,48 @@ class SignUpPage extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  const SignInButtonWidget(),
+                  // ignore: prefer_const_constructors
+                  Container(
+                    width: double.infinity,
+                    // ignore: unnecessary_new
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Color(0xFF4699C3),
+                        ),
+                      ],
+                    ),
+                    child: MaterialButton(
+                        highlightColor: Colors.transparent,
+                        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 42.0),
+                          child: Text(
+                            "SIGN UP",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                              fontFamily: 'Roboto-Regular.ttf',
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          await FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                                  email: _emailController.text,
+                                  password: _passwordController.text);
+                          setState(() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
+                          });
+                        }),
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -200,9 +195,9 @@ class SignUpPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           ScaleRoute(
-                            page: const SignInPage(),
+                            page: SignUpPage_Firebase(),
                           ),
-                        ),
+                        )
                       },
                       child: const Text(
                         "Sign In",
@@ -225,90 +220,64 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-class SignInButtonWidget extends StatelessWidget {
-  const SignInButtonWidget({Key? key}) : super(key: key);
-
+class FacebookGoogleLogin extends StatefulWidget {
+  const FacebookGoogleLogin({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      // ignore: unnecessary_new
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Color(0xFF4699C3),
-          ),
-        ],
-      ),
-      child: MaterialButton(
-          highlightColor: Colors.transparent,
-          //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 42.0),
-            child: Text(
-              "SIGN UP",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 25.0,
-                fontFamily: 'Roboto-Regular.ttf',
-              ),
-            ),
-          ),
-          onPressed: () => {}),
-    );
-  }
+  _FacebookGoogleLogin createState() => _FacebookGoogleLogin();
 }
 
-class FacebookGoogleLogin extends StatelessWidget {
-  const FacebookGoogleLogin({Key? key}) : super(key: key);
-
+// ignore: camel_case_types
+class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
+  bool _isLoggedIn = false;
+  Map _userObj = {};
+  final googel = GoogleSignIn();
+  GoogleSignInAccount? user;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 10.0),
+          padding: EdgeInsets.only(top: 10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
                       // ignore: prefer_const_literals_to_create_immutables
                       colors: [
                         Colors.black12,
                         Colors.black54,
                       ],
-                      begin: FractionalOffset(0.0, 0.0),
-                      end: FractionalOffset(1.0, 1.0),
-                      stops: [0.0, 1.0],
+                      begin: const FractionalOffset(0.0, 0.0),
+                      end: const FractionalOffset(1.0, 1.0),
+                      stops: const [0.0, 1.0],
                       tileMode: TileMode.clamp),
                 ),
                 width: 100.0,
                 height: 1.0,
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 15.0, right: 15.0),
                 child: Text(
                   "Or",
                   style: TextStyle(
                       color: Color(0xFF2c2b2b),
                       fontSize: 16.0,
-                      fontFamily: 'Roboto-Regular.ttf'),
+                      fontFamily: "Roboto-Regular.ttf"),
                 ),
               ),
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
                       // ignore: prefer_const_literals_to_create_immutables
                       colors: [
                         Colors.black54,
                         Colors.black12,
                       ],
-                      begin: FractionalOffset(0.0, 0.0),
-                      end: FractionalOffset(1.0, 1.0),
-                      stops: [0.0, 1.0],
+                      begin: const FractionalOffset(0.0, 0.0),
+                      end: const FractionalOffset(1.0, 1.0),
+                      stops: const [0.0, 1.0],
                       tileMode: TileMode.clamp),
                 ),
                 width: 100.0,
@@ -321,16 +290,31 @@ class FacebookGoogleLogin extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+              padding: EdgeInsets.only(top: 10.0, right: 40.0),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  FacebookAuth.instance.login(
+                      permissions: ["public_profile", "email"]).then((value) {
+                    FacebookAuth.instance.getUserData().then((userData) {
+                      setState(() {
+                        _isLoggedIn = true;
+                        _userObj = userData;
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      });
+                    });
+                  });
+                },
                 child: Container(
                   padding: const EdgeInsets.all(15.0),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFF55C5D1),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     FontAwesomeIcons.facebookF,
                     color: Color(0xFFFFFFFF),
                   ),
@@ -338,22 +322,43 @@ class FacebookGoogleLogin extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10.0),
+              padding: EdgeInsets.only(top: 10.0),
               child: GestureDetector(
-                onTap: () => {},
-                child: Container(
-                  padding: const EdgeInsets.all(15.0),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFF55C5D1),
-                  ),
-                  // ignore: unnecessary_new
-                  child: const Icon(
-                    FontAwesomeIcons.google,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ),
-              ),
+                  onTap: () async {
+                    try {
+                      final googleMethod = await googel.signIn();
+                      user = googleMethod;
+                      final auth = await googleMethod?.authentication;
+                      final cred = GoogleAuthProvider.credential(
+                          accessToken: auth!.idToken, idToken: auth.idToken);
+                      await FirebaseAuth.instance
+                          .signInWithCredential(cred)
+                          .whenComplete(() {
+                        print(user!.email.toString());
+                        print(user!.displayName.toString());
+                        print(user!.photoUrl.toString());
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      });
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF55C5D1),
+                    ),
+                    // ignore: unnecessary_new
+                    child: new Icon(
+                      FontAwesomeIcons.google,
+                      color: Color(0xFFFFFFFF),
+                    ),
+                  )),
             ),
           ],
         ),

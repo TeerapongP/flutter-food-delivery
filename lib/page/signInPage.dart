@@ -255,7 +255,7 @@ class _SignInPage extends State<SignInPage> {
                               Navigator.push(
                                 context,
                                 ScaleRoute(
-                                  page: SignUpPage(),
+                                  page: SignUpPage_Firebase(),
                                 ),
                               )
                             },
