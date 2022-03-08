@@ -13,9 +13,11 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   @override
   Widget build(BuildContext context) {
     int _selectedIndex = 0;
+
     void _onItemTapped(int index) {
       setState(() {
         _selectedIndex = index;
+        // ignore: unused_local_variable
 
 //        navigateToScreens(index);
       });
