@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:delivery/page/signUpPage.dart';
+import './Home.dart';
+import '../animetions/ScaleRoute.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../animetions/ScaleRoute.dart';
-import './Home.dart';
-
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -291,6 +291,8 @@ class FacebookGoogleLogin extends StatefulWidget {
 
 // ignore: camel_case_types
 class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
+  bool _isLoggedIn = false;
+  Map _userObj = {};
   final googel = GoogleSignIn();
   GoogleSignInAccount? user;
   @override
@@ -353,7 +355,22 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
             Padding(
               padding: EdgeInsets.only(top: 10.0, right: 40.0),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  FacebookAuth.instance.login(
+                      permissions: ["public_profile", "email"]).then((value) {
+                    FacebookAuth.instance.getUserData().then((userData) {
+                      setState(() {
+                        _isLoggedIn = true;
+                        _userObj = userData;
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      });
+                    });
+                  });
+                },
                 child: Container(
                   padding: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
