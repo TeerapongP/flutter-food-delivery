@@ -4,6 +4,7 @@ import '../widgets/SearchWidget.dart';
 import '../widgets/TopMenus.dart';
 import '../widgets/PopularFoodsWidget.dart';
 import '../widgets/BestFoodWidget.dart';
+import '../widgets/BottomNavBarWidget.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -44,6 +45,7 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomNavBarWidget(),
     );
   }
 }

@@ -9,8 +9,7 @@ class FoodDetailsSlider extends StatelessWidget {
 
   // ignore: use_key_in_widget_constructors
   const FoodDetailsSlider(
-      {required Key key,
-      required this.slideImage1,
+      {required this.slideImage1,
       required this.slideImage2,
       required this.slideImage3});
 
@@ -23,7 +22,7 @@ class FoodDetailsSlider extends StatelessWidget {
           Image.asset(
             slideImage1,
           ),
-          /* Image.asset(
+          Image.asset(
             slideImage2,
             height: double.infinity,
             width: double.infinity,
@@ -32,7 +31,7 @@ class FoodDetailsSlider extends StatelessWidget {
             slideImage3,
             height: double.infinity,
             width: double.infinity,
-          ),*/
+          ),
         ],
         dotSize: 4.0,
         dotSpacing: 15.0,

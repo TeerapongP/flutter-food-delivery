@@ -1,9 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import '../animetions/RotationRoute.dart';
-import '../animetions/ScaleRoute.dart';
-import './FoodDetailsSlider.dart';
 
 class PopularFoodsWidget extends StatefulWidget {
   const PopularFoodsWidget({Key? key}) : super(key: key);
@@ -222,7 +219,7 @@ class PopularFoodTiles extends StatelessWidget {
                             alignment: Alignment.bottomLeft,
                             padding: const EdgeInsets.only(
                                 left: 3, top: 5, right: 1),
-                            child: Text(price + '\ Bath',
+                            child: Text(price + ' Bath',
                                 style: const TextStyle(
                                     color: Color(0xFF6e6e71),
                                     fontSize: 12,

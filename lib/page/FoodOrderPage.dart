@@ -1,5 +1,7 @@
+import 'package:delivery/page/FoodDetailsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../animetions/ScaleRoute.dart';
 
 class FoodOrderPage extends StatefulWidget {
   const FoodOrderPage({Key? key}) : super(key: key);
@@ -21,7 +23,12 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
               Icons.arrow_back_ios,
               color: Color(0xFF3a3737),
             ),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.push(
+              context,
+              ScaleRoute(
+                page: const FoodDetailsPage(),
+              ),
+            ),
           ),
           title: const Center(
             child: Text(
