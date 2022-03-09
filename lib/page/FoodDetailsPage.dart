@@ -71,9 +71,10 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               const SizedBox(
                 height: 300,
                 child: FoodDetailsSlider(
-                  slideImage1: "assets/images/bestfood/ic_best_food_8.jpeg",
-                  slideImage2: "assets/images/bestfood/ic_best_food_9.jpeg",
-                  slideImage3: "assets/images/bestfood/ic_best_food_10.jpeg",
+                  slideImage1: "assets/images/bestfood/ic_best_food_1.jpeg",
+                  slideImage2: "assets/images/bestfood/ic_best_food_2.jpeg",
+                  slideImage3: "assets/images/bestfood/ic_best_food_3.jpeg",
+                  slideImage4: "assets/images/bestfood/ic_best_food_4.jpeg",
                 ),
               ),
               const FoodTitleWidget(
@@ -340,7 +341,7 @@ class DetailContentMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      'ไอมัง',
+      '',
       style: TextStyle(
           fontSize: 14.0,
           color: Colors.black87,
