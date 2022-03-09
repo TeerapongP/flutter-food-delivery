@@ -299,9 +299,10 @@ class PromoCodeWidget extends StatelessWidget {
                 borderSide: BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
               ),
               enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      const BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
-                  borderRadius: BorderRadius.circular(7)),
+                borderSide:
+                    const BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
+                borderRadius: BorderRadius.circular(7),
+              ),
               fillColor: Colors.white,
               hintText: 'Add Your Promo Code',
               filled: true,

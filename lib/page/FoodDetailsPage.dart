@@ -36,15 +36,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
             ),
           ),
           actions: <Widget>[
-            IconButton(
-                icon: const Icon(
-                  Icons.business_center,
-                  color: Color(0xFF3a3737),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context, ScaleRoute(page: const FoodOrderPage()));
-                })
+            CartIconWithBadge(),
           ],
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
