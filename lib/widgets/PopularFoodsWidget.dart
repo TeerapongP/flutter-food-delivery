@@ -20,8 +20,8 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
       width: double.infinity,
       child: Column(
         children: <Widget>[
-          PopularFoodTitle(),
-          Expanded(
+          const PopularFoodTitle(),
+          const Expanded(
             child: PopularFoodItems(),
           )
         ],
