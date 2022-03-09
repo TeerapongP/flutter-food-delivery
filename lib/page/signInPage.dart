@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:delivery/page/signUpPage.dart';
-import './Home.dart';
+import 'MainPage.dart';
 import '../animetions/ScaleRoute.dart';
 
 import 'package:flutter/material.dart';
@@ -219,7 +219,7 @@ class _SignInPage extends State<SignInPage> {
                           if (user != null) {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => HomePage(),
+                                builder: (context) => MainPage(),
                               ),
                             );
                           }
@@ -364,7 +364,7 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
                         _userObj = userData;
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => MainPage(),
                           ),
                         );
                       });
@@ -402,7 +402,7 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
                         print(user!.photoUrl.toString());
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => MainPage(),
                           ),
                         );
                       });

@@ -1,51 +1,85 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
-import '../widgets/BottomNavBarWidget.dart';
-import '../widgets/SearchWidget.dart';
-import '../widgets/TopMenus.dart';
-import '../widgets/PopularFoodsWidget.dart';
-import '../widgets/BestFoodWidget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'MainPage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
-  _HomePageState createState() => _HomePageState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeState extends State<Home> {
+  int _currentIndex = 0;
+  final tabs = [
+    const MainPage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xffFFFFFF),
-        elevation: 0,
-        title: const Text(
-          "What would you like to eat?",
-          style: TextStyle(
-              color: Color(0xFF3a3737),
-              fontSize: 16,
-              fontWeight: FontWeight.w400),
-        ),
-        actions: <Widget>[
-          IconButton(
-              icon: const Icon(
-                Icons.notifications_none,
-                color: Color(0xff000000),
-              ),
-              onPressed: () {}),
+      body: tabs[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        selectedFontSize: 10,
+        iconSize: 24,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.amber),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.near_me),
+            label: 'Near By',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.card_giftcard),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.user),
+            // ignore: deprecated_member_use
+            label: 'Account',
+          ),
         ],
+        onTap: (index) {
+          setState(
+            () {
+              _currentIndex = index;
+            },
+          );
+        },
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: const <Widget>[
-            SearchWidget(),
-            TopMenus(),
-            PopularFoodsWidget(),
-            BestFoodWidget(),
-          ],
-        ),
-      ),
-      bottomNavigationBar: const BottomNavBarWidget(),
     );
   }
 }
+// BottomNavigationBar(
+//       currentIndex: _currentIndex,
+//       type: BottomNavigationBarType.fixed,
+//       items: const <BottomNavigationBarItem>[
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.home),
+//           label: 'Home',
+//         ),
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.near_me),
+//           label: 'Near By',
+//         ),
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.card_giftcard),
+//           label: 'Cart',
+//         ),
+//         BottomNavigationBarItem(
+//           icon: Icon(FontAwesomeIcons.user),
+//           // ignore: deprecated_member_use
+//           label: 'Account',
+//         ),
+//       ],
+//       onTap: (index) {
+//         setState(
+//           () {
+//             _currentIndex = index;
+//           },
+//         );
+//       },
+//     );

@@ -1,5 +1,5 @@
 // ignore: file_names
-import './Home.dart';
+import 'MainPage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -157,7 +157,7 @@ class _SignUpPage_Firebase extends State<SignUpPage_Firebase> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const HomePage(),
+                                builder: (context) => const MainPage(),
                               ),
                             );
                           });
@@ -301,7 +301,7 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
                         _userObj = userData;
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => MainPage(),
                           ),
                         );
                       });
@@ -339,7 +339,7 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
                         print(user!.photoUrl.toString());
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => MainPage(),
                           ),
                         );
                       });
