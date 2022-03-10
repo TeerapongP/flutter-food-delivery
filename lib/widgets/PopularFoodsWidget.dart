@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 
+import '../animetions/ScaleRoute.dart';
+import '../page/FoodDetailsPage.dart';
+
 class PopularFoodsWidget extends StatefulWidget {
   const PopularFoodsWidget({Key? key}) : super(key: key);
 
@@ -34,7 +37,6 @@ class PopularFoodTiles extends StatelessWidget {
   final String rating;
   final String numberOfRating;
   final String price;
-  final String slug;
 
   // ignore: use_key_in_widget_constructors
   const PopularFoodTiles(
@@ -42,8 +44,7 @@ class PopularFoodTiles extends StatelessWidget {
       required this.imageUrl,
       required this.rating,
       required this.numberOfRating,
-      required this.price,
-      required this.slug});
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +58,10 @@ class PopularFoodTiles extends StatelessWidget {
             padding:
                 const EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
             decoration: const BoxDecoration(boxShadow: [
-              /* BoxShadow(
-                color: Color(0xFFfae3e2),
+              BoxShadow(
+                color: Color.fromARGB(255, 238, 238, 238),
                 blurRadius: 15.0,
-                offset: Offset(0, 0.75),
-              ),*/
+              ),
             ]),
             child: Card(
                 color: Colors.white,
@@ -275,47 +275,47 @@ class PopularFoodItems extends StatelessWidget {
       children: <Widget>[
         // ignore: prefer_const_constructors
         PopularFoodTiles(
-            name: " Bread Fried Egg",
-            imageUrl: "ic_popular_food_1",
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '45',
-            slug: "fried_egg"),
+          name: " Bread Fried Egg",
+          imageUrl: "ic_popular_food_1",
+          rating: '4.9',
+          numberOfRating: '200',
+          price: '45',
+        ),
         const PopularFoodTiles(
-            name: "Takoyaki",
-            imageUrl: "ic_popular_food_3",
-            rating: "4.9",
-            numberOfRating: "100",
-            price: "69",
-            slug: ""),
+          name: "Takoyaki",
+          imageUrl: "ic_popular_food_3",
+          rating: "4.9",
+          numberOfRating: "100",
+          price: "69",
+        ),
         const PopularFoodTiles(
-            name: "French Fries",
-            imageUrl: "ic_popular_food_4",
-            rating: "4.0",
-            numberOfRating: "50",
-            price: "79",
-            slug: ""),
+          name: "French Fries",
+          imageUrl: "ic_popular_food_4",
+          rating: "4.0",
+          numberOfRating: "50",
+          price: "79",
+        ),
         const PopularFoodTiles(
-            name: "Bacon Bread",
-            imageUrl: "ic_popular_food_5",
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "50",
-            slug: ""),
+          name: "Bacon Bread",
+          imageUrl: "ic_popular_food_5",
+          rating: "4.00",
+          numberOfRating: "100",
+          price: "50",
+        ),
         const PopularFoodTiles(
-            name: "Tonkatsu Curry",
-            imageUrl: "ic_popular_food_2",
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "69",
-            slug: ""),
+          name: "Tonkatsu Curry",
+          imageUrl: "ic_popular_food_2",
+          rating: "4.6",
+          numberOfRating: "150",
+          price: "69",
+        ),
         const PopularFoodTiles(
-            name: "Shrimp Fried Rice",
-            imageUrl: "ic_popular_food_6",
-            rating: "4.2",
-            numberOfRating: "70",
-            price: "79",
-            slug: ""),
+          name: "Shrimp Fried Rice",
+          imageUrl: "ic_popular_food_6",
+          rating: "4.2",
+          numberOfRating: "70",
+          price: "79",
+        ),
       ],
     );
   }

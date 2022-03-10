@@ -1,3 +1,4 @@
+// ignore: file_names, import_of_legacy_library_into_null_safe
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 
@@ -40,10 +41,10 @@ class FoodDetailsSlider extends StatelessWidget {
             width: double.infinity,
           ),
         ],
-        dotSize: 4.0,
+        dotSize: 5.0,
         dotSpacing: 15.0,
-        dotColor: Colors.purple,
-        indicatorBgPadding: 5.0,
+        dotColor: const Color.fromARGB(255, 255, 0, 0),
+        indicatorBgPadding: 20.0,
         dotBgColor: Colors.black54.withOpacity(0),
         borderRadius: true,
         radius: const Radius.circular(20),

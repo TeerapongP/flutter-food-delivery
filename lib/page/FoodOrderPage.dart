@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, avoid_print
+
 import 'package:delivery/page/FoodDetailsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +13,6 @@ class FoodOrderPage extends StatefulWidget {
 }
 
 class _FoodOrderPageState extends State<FoodOrderPage> {
-  int counter = 3;
   int productPrice = 120;
   @override
   Widget build(BuildContext context) {
@@ -41,9 +42,7 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
               textAlign: TextAlign.center,
             ),
           ),
-          actions: <Widget>[
-            CartIconWithBadge(),
-          ],
+          actions: const <Widget>[CartIconWithBadge(counter: 2)],
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
         body: SingleChildScrollView(
@@ -67,22 +66,21 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                   height: 10,
                 ),
                 CartItem(
-                    productName: "Grilled Salmon",
+                    productName: "Salmon Sashimi",
                     productPrice: productPrice,
-                    productImage: "ic_popular_food_1",
+                    productImage: "ic_best_food_11",
                     productCartQuantity: "2"),
                 const SizedBox(
                   height: 10,
                 ),
                 CartItem(
-                    productName: "Meat vegetable",
+                    productName: "Salmon Sashimi",
                     productPrice: productPrice,
-                    productImage: "ic_popular_food_4",
+                    productImage: "ic_best_food_12",
                     productCartQuantity: "5"),
                 const SizedBox(
                   height: 10,
                 ),
-                const PromoCodeWidget(),
                 const SizedBox(
                   height: 10,
                 ),
@@ -207,7 +205,7 @@ class TotalCalculationWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   const Text(
-                    "Grilled Salmon",
+                    "Salmon Sashimi",
                     style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF3a3a3b),
@@ -231,7 +229,7 @@ class TotalCalculationWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   const Text(
-                    "Meat vegetable",
+                    "Salmon Sashimi",
                     style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF3a3a3b),
@@ -280,49 +278,6 @@ class TotalCalculationWidget extends StatelessWidget {
   }
 }
 
-class PromoCodeWidget extends StatelessWidget {
-  const PromoCodeWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        padding: const EdgeInsets.only(left: 3, right: 3),
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: const Color(0xFFfae3e2).withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 1,
-            offset: const Offset(0, 1),
-          ),
-        ]),
-        child: TextFormField(
-          decoration: InputDecoration(
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
-                borderRadius: BorderRadius.circular(7),
-              ),
-              fillColor: Colors.white,
-              hintText: 'Add Your Promo Code',
-              filled: true,
-              suffixIcon: IconButton(
-                  icon: const Icon(
-                    Icons.local_offer,
-                    color: Color(0xFFfd2c2c),
-                  ),
-                  onPressed: () {
-                    debugPrint('222');
-                  })),
-        ),
-      ),
-    );
-  }
-}
-
 class CartItem extends StatelessWidget {
   final String productName;
   // final String productPrice;
@@ -330,7 +285,7 @@ class CartItem extends StatelessWidget {
   final String productImage;
   final String productCartQuantity;
 
-  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+  // ignore: prefer_const_constructors_in_immutables
   const CartItem({
     required this.productName,
     // required this.productPrice,
@@ -371,7 +326,7 @@ class CartItem extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Center(
                     child: Image.asset(
-                  "assets/images/popular_foods/$productImage.png",
+                  "assets/images/bestfood/$productImage.jpg",
                   width: 110,
                   height: 100,
                 )),
@@ -438,12 +393,15 @@ class CartItem extends StatelessWidget {
   }
 }
 
+//จำนวนสินค้า
 // ignore: must_be_immutable
 class CartIconWithBadge extends StatelessWidget {
-  int counter = 2;
+  final int counter;
 
-  CartIconWithBadge({Key? key}) : super(key: key);
-
+  // ignore: prefer_const_constructors_in_immutables
+  const CartIconWithBadge({
+    required this.counter,
+  });
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -487,7 +445,7 @@ class CartIconWithBadge extends StatelessWidget {
 // ignore: must_be_immutable
 class AddToCartMenu extends StatelessWidget {
   AddToCartMenu({Key? key}) : super(key: key);
-  int productCounter = 1;
+  int productCounter = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -501,7 +459,6 @@ class AddToCartMenu extends StatelessWidget {
           iconSize: 18,
         ),
         InkWell(
-          // ignore: avoid_print
           onTap: () => print('hello'),
           child: Container(
             width: 100.0,
@@ -523,7 +480,7 @@ class AddToCartMenu extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () => {},
           icon: const Icon(Icons.add),
           color: const Color(0xFFfd2c2c),
           iconSize: 18,

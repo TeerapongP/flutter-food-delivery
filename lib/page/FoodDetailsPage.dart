@@ -14,7 +14,6 @@ class FoodDetailsPage extends StatefulWidget {
 }
 
 class _FoodDetailsPageState extends State<FoodDetailsPage> {
-  int _counter = 10;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -36,8 +35,10 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               ),
             ),
           ),
-          actions: <Widget>[
-            CartIconWithBadge(),
+          actions: const <Widget>[
+            CartIconWithBadge(
+              counter: 2,
+            ),
           ],
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
@@ -72,7 +73,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               ),
               const FoodTitleWidget(
                   productName: "Salmon Sashimi",
-                  productPrice: "฿ 99.00",
+                  productPrice: "฿ 120.00",
                   productHost: "Hashery Bistro"), //แก้
               const SizedBox(
                 height: 15,
@@ -334,7 +335,7 @@ class DetailContentMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      'อาหารที่อร่อย ถูก ดี ไม่มีในโลก ร้านนี้ก็เช่นกัน', //แก้
+      'ครั้งนี้เป็นรีวิวร้าน Hashery Bistro ร้านอาหารญี่ปุ่นพรีเมี่ยมที่ย่านทองหล่ออันมีชื่อเสียง ครั้งนี้จัดคอร์ส Omakase ราคา 120 บาท เรียกว่าเป็นครั้งแรกของผมสำหรับคอร์สราคาระดับนี้ ซึ่งจะนำมาเหลาให้ฟังกันจ้าา Omakase หรือคอร์สซูชิแบบ “ตามใจเชฟ” เรารู้เพียงแต่ว่าจะมีเมนูประเภทไหนมาเสิร์ฟบ้าง แต่จะไม่รู้ว่ามีเมนูอะไรบ้าง ซึ่งก็จะขึ้นอยู่กับวัตถุดิบที่เข้ามาในแต่ละวัน ', //แก้
       style: TextStyle(
           fontSize: 14.0,
           color: Colors.black87,
