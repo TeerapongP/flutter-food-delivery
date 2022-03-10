@@ -64,16 +64,16 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               const SizedBox(
                 height: 300,
                 child: FoodDetailsSlider(
-                  slideImage1: "assets/images/bestfood/ic_best_food_1.jpeg",
-                  slideImage2: "assets/images/bestfood/ic_best_food_2.jpeg",
-                  slideImage3: "assets/images/bestfood/ic_best_food_3.jpeg",
-                  slideImage4: "assets/images/bestfood/ic_best_food_4.jpeg",
+                  slideImage1: "assets/images/bestfood/ic_best_food_12.jpg",
+                  slideImage2: "assets/images/bestfood/ic_best_food_11.jpg",
+                  slideImage3: "assets/images/bestfood/ic_best_food_10.jpeg",
+                  slideImage4: "assets/images/bestfood/ic_best_food_13.jpg",
                 ),
               ),
               const FoodTitleWidget(
-                  productName: "Grilled Salmon",
-                  productPrice: "\$96.00",
-                  productHost: "pizza hut"),
+                  productName: "Salmon Sashimi",
+                  productPrice: "฿ 99.00",
+                  productHost: "Hashery Bistro"), //แก้
               const SizedBox(
                 height: 15,
               ),
@@ -334,7 +334,7 @@ class DetailContentMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      'ไอมัง++',
+      'อาหารที่อร่อย ถูก ดี ไม่มีในโลก ร้านนี้ก็เช่นกัน', //แก้
       style: TextStyle(
           fontSize: 14.0,
           color: Colors.black87,

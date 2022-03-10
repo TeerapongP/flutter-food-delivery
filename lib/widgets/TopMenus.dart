@@ -23,7 +23,7 @@ class _TopMenusState extends State<TopMenus> {
           TopMenuTiles(name: "Ice Cream", imageUrl: "ic_ice_cream", slug: ""),
           TopMenuTiles(name: "Soft Drink", imageUrl: "ic_soft_drink", slug: ""),
           TopMenuTiles(name: "Burger", imageUrl: "ic_burger", slug: ""),
-          TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", slug: ""),
+          TopMenuTiles(name: "Sushi", imageUrl: "ic_pasta", slug: ""), //แก้
         ],
       ),
     );
