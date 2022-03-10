@@ -12,6 +12,7 @@ class FoodOrderPage extends StatefulWidget {
 
 class _FoodOrderPageState extends State<FoodOrderPage> {
   int counter = 3;
+  int productPrice = 120;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,17 +66,17 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                const CartItem(
+                CartItem(
                     productName: "Grilled Salmon",
-                    productPrice: "\$96.00",
+                    productPrice: productPrice,
                     productImage: "ic_popular_food_1",
                     productCartQuantity: "2"),
                 const SizedBox(
                   height: 10,
                 ),
-                const CartItem(
+                CartItem(
                     productName: "Meat vegetable",
-                    productPrice: "\$65.08",
+                    productPrice: productPrice,
                     productImage: "ic_popular_food_4",
                     productCartQuantity: "5"),
                 const SizedBox(
@@ -85,7 +86,7 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                const TotalCalculationWidget(),
+                TotalCalculationWidget(productPrice),
                 const SizedBox(
                   height: 10,
                 ),
@@ -166,8 +167,10 @@ class PaymentMethodWidget extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class TotalCalculationWidget extends StatelessWidget {
-  const TotalCalculationWidget({Key? key}) : super(key: key);
+  int productPrice;
+  TotalCalculationWidget(this.productPrice, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -202,8 +205,8 @@ class TotalCalculationWidget extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  Text(
+                children: <Widget>[
+                  const Text(
                     "Grilled Salmon",
                     style: TextStyle(
                         fontSize: 18,
@@ -212,8 +215,8 @@ class TotalCalculationWidget extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    "\$192",
-                    style: TextStyle(
+                    "$productPrice" " Bath",
+                    style: const TextStyle(
                         fontSize: 18,
                         color: Color(0xFF3a3a3b),
                         fontWeight: FontWeight.w400),
@@ -226,8 +229,8 @@ class TotalCalculationWidget extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  Text(
+                children: <Widget>[
+                  const Text(
                     "Meat vegetable",
                     style: TextStyle(
                         fontSize: 18,
@@ -236,8 +239,8 @@ class TotalCalculationWidget extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    "\$102",
-                    style: TextStyle(
+                    "$productPrice" " Bath",
+                    style: const TextStyle(
                         fontSize: 18,
                         color: Color(0xFF3a3a3b),
                         fontWeight: FontWeight.w400),
@@ -250,8 +253,8 @@ class TotalCalculationWidget extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  Text(
+                children: <Widget>[
+                  const Text(
                     "Total",
                     style: TextStyle(
                         fontSize: 18,
@@ -260,8 +263,8 @@ class TotalCalculationWidget extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    "\$292",
-                    style: TextStyle(
+                    "${productPrice + productPrice}" " Bath",
+                    style: const TextStyle(
                         fontSize: 18,
                         color: Color(0xFF3a3a3b),
                         fontWeight: FontWeight.w600),
@@ -322,13 +325,15 @@ class PromoCodeWidget extends StatelessWidget {
 
 class CartItem extends StatelessWidget {
   final String productName;
-  final String productPrice;
+  // final String productPrice;
+  final int productPrice;
   final String productImage;
   final String productCartQuantity;
 
   // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   const CartItem({
     required this.productName,
+    // required this.productPrice,
     required this.productPrice,
     required this.productImage,
     required this.productCartQuantity,
@@ -348,93 +353,94 @@ class CartItem extends StatelessWidget {
         ),
       ]),
       child: Card(
-          color: Colors.white,
-          elevation: 0,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(5.0),
-            ),
+        color: Colors.white,
+        elevation: 0,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(5.0),
           ),
-          child: Container(
-            alignment: Alignment.center,
-            padding:
-                const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Center(
-                      child: Image.asset(
-                    "assets/images/popular_foods/$productImage.png",
-                    width: 110,
-                    height: 100,
-                  )),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              productName,
-                              style: const TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFF3a3a3b),
-                                  fontWeight: FontWeight.w400),
-                              textAlign: TextAlign.left,
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              productPrice,
-                              style: const TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFF3a3a3b),
-                                  fontWeight: FontWeight.w400),
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        Container(
-                          alignment: Alignment.centerRight,
-                          child: Image.asset(
-                            "assets/images/menus/ic_delete.png",
-                            width: 25,
-                            height: 25,
+        ),
+        child: Container(
+          alignment: Alignment.center,
+          padding:
+              const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Center(
+                    child: Image.asset(
+                  "assets/images/popular_foods/$productImage.png",
+                  width: 110,
+                  height: 100,
+                )),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            productName,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                color: Color(0xFF3a3a3b),
+                                fontWeight: FontWeight.w400),
+                            textAlign: TextAlign.left,
                           ),
-                        )
-                      ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 20),
-                      alignment: Alignment.centerRight,
-                      child: AddToCartMenu(2),
-                    )
-                  ],
-                )
-              ],
-            ),
-          )),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            productPrice.toString(),
+                            style: const TextStyle(
+                                fontSize: 18,
+                                color: Color(0xFF3a3a3b),
+                                fontWeight: FontWeight.w400),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Container(
+                        alignment: Alignment.centerRight,
+                        child: Image.asset(
+                          "assets/images/menus/ic_delete.png",
+                          width: 25,
+                          height: 25,
+                        ),
+                      )
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 20),
+                    alignment: Alignment.centerRight,
+                    child: AddToCartMenu(),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
 // ignore: must_be_immutable
 class CartIconWithBadge extends StatelessWidget {
-  int counter = 3;
+  int counter = 2;
 
   CartIconWithBadge({Key? key}) : super(key: key);
 
@@ -480,9 +486,8 @@ class CartIconWithBadge extends StatelessWidget {
 
 // ignore: must_be_immutable
 class AddToCartMenu extends StatelessWidget {
-  int productCounter;
-
-  AddToCartMenu(this.productCounter, {Key? key}) : super(key: key);
+  AddToCartMenu({Key? key}) : super(key: key);
+  int productCounter = 1;
 
   @override
   Widget build(BuildContext context) {

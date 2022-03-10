@@ -14,6 +14,7 @@ class FoodDetailsPage extends StatefulWidget {
 }
 
 class _FoodDetailsPageState extends State<FoodDetailsPage> {
+  int _counter = 10;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -35,9 +36,42 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               ),
             ),
           ),
-          actions: <Widget>[
-            CartIconWithBadge(),
-          ],
+          // actions: <Widget>[
+          //  Stack(
+          //       children: <Widget>[
+          //         IconButton(
+          //             icon: const Icon(
+          //               Icons.business_center,
+          //               color: Color(0xFF3a3737),
+          //             ),
+          //             onPressed: () {}),
+          //         _counter != 0
+          //             ? Positioned(
+          //                 right: 11,
+          //                 top: 11,
+          //                 child: Container(
+          //                   padding: const EdgeInsets.all(2),
+          //                   decoration: BoxDecoration(
+          //                     color: Colors.white,
+          //                     borderRadius: BorderRadius.circular(6),
+          //                   ),
+          //                   constraints: const BoxConstraints(
+          //                     minWidth: 14,
+          //                     minHeight: 14,
+          //                   ),
+          //                   child: Text(
+          //                     '$_counter',
+          //                     style: const TextStyle(
+          //                       color: Colors.red,
+          //                       fontSize: 8,
+          //                     ),
+          //                     textAlign: TextAlign.center,
+          //                   ),
+          //                 ),
+          //               )
+          //             : Container()
+          //       ],
+          //     ),],
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
         body: Container(
