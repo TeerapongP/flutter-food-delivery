@@ -6,12 +6,14 @@ class FoodDetailsSlider extends StatelessWidget {
   final String slideImage1;
   final String slideImage2;
   final String slideImage3;
+  final String slideImage4;
 
   // ignore: use_key_in_widget_constructors
   const FoodDetailsSlider(
       {required this.slideImage1,
       required this.slideImage2,
-      required this.slideImage3});
+      required this.slideImage3,
+      required this.slideImage4});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,11 @@ class FoodDetailsSlider extends StatelessWidget {
           ),
           Image.asset(
             slideImage3,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+          Image.asset(
+            slideImage4,
             height: double.infinity,
             width: double.infinity,
           ),
