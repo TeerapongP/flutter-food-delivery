@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_field, avoid_print
 
 import 'package:delivery/page/signUpPage.dart';
 import 'MainPage.dart';
@@ -67,6 +67,7 @@ class _SignInPage extends State<SignInPage> {
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
+        // ignore: avoid_print
         print("No User found for that email");
       }
     }
@@ -215,6 +216,7 @@ class _SignInPage extends State<SignInPage> {
                               email: _emailController.text,
                               password: _passwordController.text,
                               context: context);
+                          // ignore: avoid_print
                           print(user);
                           if (user != null) {
                             Navigator.of(context).pushReplacement(

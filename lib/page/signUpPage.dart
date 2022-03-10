@@ -195,7 +195,7 @@ class _SignUpPage_Firebase extends State<SignUpPage_Firebase> {
                         Navigator.push(
                           context,
                           ScaleRoute(
-                            page: SignUpPage_Firebase(),
+                            page: const SignUpPage_Firebase(),
                           ),
                         )
                       },
@@ -228,8 +228,6 @@ class FacebookGoogleLogin extends StatefulWidget {
 
 // ignore: camel_case_types
 class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
-  bool _isLoggedIn = false;
-  Map _userObj = {};
   final googel = GoogleSignIn();
   GoogleSignInAccount? user;
   @override
@@ -237,27 +235,27 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(top: 10.0),
+          padding: const EdgeInsets.only(top: 10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       // ignore: prefer_const_literals_to_create_immutables
                       colors: [
                         Colors.black12,
                         Colors.black54,
                       ],
-                      begin: const FractionalOffset(0.0, 0.0),
-                      end: const FractionalOffset(1.0, 1.0),
-                      stops: const [0.0, 1.0],
+                      begin: FractionalOffset(0.0, 0.0),
+                      end: FractionalOffset(1.0, 1.0),
+                      stops: [0.0, 1.0],
                       tileMode: TileMode.clamp),
                 ),
                 width: 100.0,
                 height: 1.0,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 15.0, right: 15.0),
                 child: Text(
                   "Or",
@@ -268,16 +266,16 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
                 ),
               ),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       // ignore: prefer_const_literals_to_create_immutables
                       colors: [
                         Colors.black54,
                         Colors.black12,
                       ],
-                      begin: const FractionalOffset(0.0, 0.0),
-                      end: const FractionalOffset(1.0, 1.0),
-                      stops: const [0.0, 1.0],
+                      begin: FractionalOffset(0.0, 0.0),
+                      end: FractionalOffset(1.0, 1.0),
+                      stops: [0.0, 1.0],
                       tileMode: TileMode.clamp),
                 ),
                 width: 100.0,
@@ -290,18 +288,16 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 10.0, right: 40.0),
+              padding: const EdgeInsets.only(top: 10.0, right: 40.0),
               child: GestureDetector(
                 onTap: () async {
                   FacebookAuth.instance.login(
                       permissions: ["public_profile", "email"]).then((value) {
                     FacebookAuth.instance.getUserData().then((userData) {
                       setState(() {
-                        _isLoggedIn = true;
-                        _userObj = userData;
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => MainPage(),
+                            builder: (context) => const MainPage(),
                           ),
                         );
                       });
@@ -310,11 +306,11 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
                 },
                 child: Container(
                   padding: const EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFF55C5D1),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     FontAwesomeIcons.facebookF,
                     color: Color(0xFFFFFFFF),
                   ),
@@ -322,7 +318,7 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10.0),
+              padding: const EdgeInsets.only(top: 10.0),
               child: GestureDetector(
                   onTap: () async {
                     try {
@@ -334,12 +330,15 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
                       await FirebaseAuth.instance
                           .signInWithCredential(cred)
                           .whenComplete(() {
+                        // ignore: avoid_print
                         print(user!.email.toString());
+                        // ignore: avoid_print
                         print(user!.displayName.toString());
+                        // ignore: avoid_print
                         print(user!.photoUrl.toString());
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => MainPage(),
+                            builder: (context) => const MainPage(),
                           ),
                         );
                       });
@@ -349,12 +348,12 @@ class _FacebookGoogleLogin extends State<FacebookGoogleLogin> {
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Color(0xFF55C5D1),
                     ),
                     // ignore: unnecessary_new
-                    child: new Icon(
+                    child: const Icon(
                       FontAwesomeIcons.google,
                       color: Color(0xFFFFFFFF),
                     ),
