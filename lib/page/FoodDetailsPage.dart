@@ -341,11 +341,7 @@ class DetailContentMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-<<<<<<< HEAD
-      'ไอมัง++',
-=======
       'อาหารที่อร่อย ถูก ดี ไม่มีในโลก ร้านนี้ก็เช่นกัน', //แก้
->>>>>>> yuki
       style: TextStyle(
           fontSize: 14.0,
           color: Colors.black87,
