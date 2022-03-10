@@ -14,6 +14,7 @@ class FoodDetailsPage extends StatefulWidget {
 }
 
 class _FoodDetailsPageState extends State<FoodDetailsPage> {
+  int _counter = 10;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -36,15 +37,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
             ),
           ),
           actions: <Widget>[
-            IconButton(
-                icon: const Icon(
-                  Icons.business_center,
-                  color: Color(0xFF3a3737),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context, ScaleRoute(page: const FoodOrderPage()));
-                })
+            CartIconWithBadge(),
           ],
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),

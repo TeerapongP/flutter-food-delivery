@@ -1,5 +1,6 @@
 // @dart=2.9
 
+import 'package:delivery/page/FoodDetailsPage.dart';
 import 'package:delivery/page/MainPage.dart';
 
 import 'page/signInPage.dart';
@@ -15,7 +16,7 @@ main() async {
       fontFamily: 'Roboto-Regular.ttf',
     ),
     // ignore: prefer_const_constructors
-    home: MainPage(),
+    home: FoodDetailsPage(),
     // home: SignInPage_Firebase(),
   ));
 }
