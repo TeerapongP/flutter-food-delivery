@@ -16,7 +16,7 @@ main() async {
       fontFamily: 'Roboto-Regular.ttf',
     ),
     // ignore: prefer_const_constructors
-    home: FoodDetailsPage(),
+    home: MainPage(),
     // home: SignInPage_Firebase(),
   ));
 }
